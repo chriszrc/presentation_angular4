@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="css/theme/black.css">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/atom-one-dark.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -20,12 +20,471 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+
+		<style>
+			.avatar {
+		    width: 180px;
+		    height: 180px;
+		    border-radius: 100%;
+		    margin: .5em 0;
+			}
+
+			.reveal pre code {
+				max-height:600px !important;
+			}
+
+			.reveal .slides > section.cm-title, .reveal .slides > section > section.cm-title {
+			  min-height: 100% !important;
+			  display: flex !important;
+			  flex-direction: column !important;
+			  justify-content: center !important;
+			  position: absolute !important;
+			  top: 0 !important;
+			}
+			section div.top {
+			  position: absolute !important;
+			  top: 0 !important;
+			  margin-left: auto !important;
+			  margin-right: auto !important;
+			  left: 0 !important;
+			  right: 0 !important;
+			}
+
+			section div.bottom {
+			  position: absolute !important;
+			  bottom: 0 !important;
+			  margin-left: auto !important;
+			  margin-right: auto !important;
+			  left: 0 !important;
+			  right: 0 !important;
+			}
+
+			.meme {
+			  font-family: impact !important;
+			  font-size: 2.1em !important;
+			  text-transform: uppercase !important;
+			  color: white !important;
+			  letter-spacing: -2px !important;
+			  text-shadow:2px 2px 0 #000,
+			  -2px -2px 0 #000,
+			  2px -2px 0 #000,
+			  -2px 2px 0 #000,
+			  0px 2px 0 #000,
+			  2px 0px 0 #000,
+			  0px -2px 0 #000,
+			  -2px 0px 0 #000,
+			  2px 2px 5px #000 !important;
+			}
+
+			img.nostyle {
+				margin:0 !important;
+				background:none !important;
+			}
+
+			.bold {
+				font-weight:900 !important;
+			}
+
+			.nobold {
+				font-weight:normal !important;
+			}
+
+			.nomargin {
+				margin:0 !important;
+			}
+
+			.link {
+				text-decoration: underline;
+				color:#3884b9;
+			}
+		</style>
 	</head>
 	<body>
+		<!--
+			// Transition style
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			// Transition speed
+			transitionSpeed: 'default', // default/fast/slow
+
+			// Transition style for full page slide backgrounds
+			backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+		-->
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<img src="images/chris-profile.jpg" class="avatar" />
+					<h5 style="text-transform:lowercase;">@chrismarx</h5>
+					<h5 style="text-transform:lowercase;">bit.ly/98hfkj2</h5>
+					<img src="images/zross.png" style="height:100px" class="nostyle plain"/>
+					<aside class="notes">
+						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+					</aside>
+				</section>
+
+				<section data-transition="zoom" data-background-video="images/to_infinity_and_beyond.mov" data-background-video-loop data-background-video-muted class="cm-title">
+					<div style=" color: #000; padding: 20px;" class="top">
+						<h2 class="meme">To <img src="images/angular.svg" width="100" style="vertical-align:bottom;" class="plain nostyle"/> 4 / Infinity</h2>
+					</div>
+					<div style=" color: #000; padding: 20px;" class="bottom">
+						<h2 class="meme">And Beyond!</h2>
+					</div>
+				</section>
+
+
+				<section data-transition="slide-in" >
+					<h2>The Mindset</h2>
+					<ol>
+						<li>Angular is a framework</li>
+						<li>Apps are component driven (ala web-components-ish)</li>
+						<li>Html templates are still valid html</li>
+						<li>Opinionated (mostly)</li>
+					<ol>
+					<aside class="notes">
+						Start with the mindset. Here's a top level overview
+					</aside>
+				</section>
+
+				<section data-transition="none" data-background-video="images/matrix_framework.mp4" data-background-video-loop>
+					<div style="background-color: rgba(0, 0, 0, 0.7); color: #fff;">
+						<h2>The Mindset</h2>
+						<ol >
+							<li class="bold">Angular is a framework
+								<ul class="nobold">
+									<li>The matrix, I mean framework, provides all</li>
+									<li>Web components, UI Library, Router, Flex Layout, Animations, CLI, Browser Plugin, AJAX</li>
+									<li>Isomorpohic Rendering and Pluggable Renderers</li>
+								</ul>
+							</li>
+						</ol>
+					</div>
+					<aside class="notes">
+						Isomorphic rendering, or server side rendering is now supported and officially part of the angular universe with angular universal.
+						To support that feature, angular 2+ (just angular) has a pluggable rendering system, so now you can even do native apps using
+						thing like react native, or the more recommended solution is to use nativescript, which is a similar effort.
+						If it's something that's pretty essential to making a single page app work, chances are angular is going to
+						at least have some basic support, and usually its enough. Obviously if you need a mapping framework like leaflet
+						or need charts, etc., you're going to include other libraries, but for the basics of the app itself, Angular provides all.
+						</article>
+					</aside>
+				</section>
+
+				<section data-transition="none" >
+					<h2>The Mindset</h2>
+					<ol start="2">
+						<li class="bold"><span class="bold">Apps are component driven (ala web-components-ish)</span>
+							<ul style="font-weight:normal;">
+								<li class="link">https://angular.io/tutorial</li>
+								<li class="link">https://angular.io/guide/router</li>
+								<li class="link">https://github.com/johnpapa/angular-tour-of-heroes</li>
+							</ul>
+						</li>
+					</ol>
+					<aside class="notes">
+						For this section, I'm going to be referencing the Angular Tour of Heroes app, which is what all the official
+						documentation references.
+					</aside>
+				</section>
+
+				<section>
+					<iframe id="demo-iframe" data-src="images/dist/index.html#/dashboard" style="width:95%;height:610px;background-color:white;">
+					</iframe>
+
+					<aside class="notes">
+						Here's the  basic demo app, it's got the router (which also now supports nested routes, optional states, it's very nice),
+						it's got 2 different primary page views, and then within each view, there are additional components that are built individually
+						like the search bar, or the hero detail view, which is used across both views.
+					</aside>
+				</section>
+
+				<section>
+					<pre><code class="typescript" data-trim >
+						import { Component } from '@angular/core';
+						import { Router, Event, NavigationEnd } from "@angular/router";
+
+						@Component({
+						  selector: 'my-root',
+						  template: `
+						    <h1>{{title}} ----- Show URL:{{urlLocation}}</h1>
+						    <div class="header-bar"></div>
+						    <nav>
+						      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+						      <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+						    </nav>
+						    <router-outlet></router-outlet>
+						  `,
+						  styleUrls: ['./app.component.css']
+						})
+						export class AppComponent {
+						  title = 'Tour of Heroes';
+						  urlLocation = "";
+
+						  constructor(private router: Router){
+						    router.events.subscribe((event:Event) => {
+						      if(event instanceof NavigationEnd) {
+						        this.urlLocation = event.url;
+						      }
+						    });
+						  }
+						}
+					</code></pre>
+
+					<aside class="notes">
+						This is the primary app component, it doesn't do a whole lot, but it shows how you can put html and even css if you want
+						in a single file, like a standard webcomponent. Best practices are to keep everything in different files, that'll be shown next
+						You can see we've got some additional attributes being added to the link elements, those are router specific directives to activate
+						the other route views, and the router-outlet, where the views will be rendered. you can have many nested router-outlets, which
+						lets you create whatever kind of ui you want. For this demo, I added the event.subscribe, which simply sets up a subscription
+						to the router events, and when there is a successful navigation it updates the urlLocation class property, which are exposed
+						to the template. We'll talk more later about how angular handles change detection and knows to update the views.
+
+						Also, notice the selector "my-root". This is the custom element part of it. If you put a standard html tag on your page
+						that says <my-root> and include the scripts, my-root will render your app.
+					</aside>
+				</section>
+
+				<section>
+					<pre><code  class="typescript" data-trim>
+						import { NgModule } from '@angular/core';
+						import { Routes, RouterModule } from '@angular/router';
+
+						import { DashboardComponent } from './dashboard.component';
+						import { HeroesComponent } from './heroes.component';
+						import { HeroDetailComponent } from './hero-detail.component';
+
+						const routes: Routes = [
+						  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+						  { path: 'dashboard', component: DashboardComponent },
+						  { path: 'detail/:id', component: HeroDetailComponent },
+						  { path: 'heroes', component: HeroesComponent }
+						];
+
+						@NgModule({
+						  imports: [RouterModule.forRoot(routes,{useHash:true})],
+						  exports: [RouterModule]
+						})
+						export class AppRoutingModule { }
+					</code></pre>
+
+					<aside class="notes">
+						Here's the router config, each route in the application is mapped to a component. You can also setup child routes
+						even do lazy route loading (which means that other "page views" in your app, and all their resources, (unless they're used elsewhere))
+						will actually be built into separate files and not loaded until those page views are active (or even can be preloaded in the
+						background automatically)
+
+						I added the useHash here, like all modern apps, angular uses html5 push state, but to embed the app and run without a normal server
+						i reverted to the old hash-bang syntax, which still works perfectly fine.
+					</aside>
+				</section>
+
+				<section >
+					<pre><code class="typescript" data-trim data-noescape>
+						import { Component, OnInit } from '@angular/core';
+						import { Router } from '@angular/router';
+
+						import { Hero } from './hero';
+						import { HeroService } from './hero.service';
+
+						@Component({
+						  <span class="fragment highlight-green">selector: 'my-dashboard'</span>,
+						  <span class="fragment highlight-green">templateUrl: './dashboard.component.html'</span>,
+						  <span class="fragment highlight-green">styleUrls: ['./dashboard.component.css']</span>
+						})
+						export class DashboardComponent implements OnInit {
+						  <span class="fragment highlight-green">heroes: Hero[] = [];</span>
+
+						  constructor(
+						    private router: Router,
+						    private heroService: HeroService) {
+						  }
+
+						  ngOnInit(): void {
+						    this.heroService.getHeroes()
+						      .then(heroes => this.heroes = heroes.slice(1, 5));
+						  }
+
+						  gotoDetail(hero: Hero): void {
+						    const link = ['/detail', hero.id];
+						    this.router.navigate(link);
+						  }
+						}
+
+						/*just for demo, can also use interfaces here too*/
+						<span class="fragment highlight-green">export class Hero {</span>
+						  id: number;
+						  name: string;
+						}
+					</code></pre>
+
+					<aside class="notes">
+						typically each major page view is a component as well. Here the component is setup more typically, with all
+						the resources in their own files. This is the dashboard, the default view. We make a ajax call for heroes
+						and put them in the heroes array when we get em back.
+
+						There are a number of things to notice here.
+						1. selector - this is the name of the custom html tag that will render this component (exactly like a web component)
+						2. the html is in its own file now
+						3. all of the styles will automatically be scoped just to apply to this component. this echoes both css modules
+							and web components. Currently angular can support several different levels of css view encapsulation, even use
+							native shadow dom if its available.
+						4. Notice the array has type "Hero", this is very nice since all the methods are deal with hero records can now expect
+						   exactly what they are getting, and typescript will give type errors immediately, as well as intellisense,
+							 more on that later.
+					</aside>
+				</section>
+
+				<section>
+					<h4>./dashboard.component.html</h4>
+					<pre><code data-trim >
+						<h3>Top Heroes</h3>
+						<div class="grid grid-pad">
+						  <div *ngFor="let hero of heroes" (click)="gotoDetail(hero)" class="col-1-4">
+						    <div class="module hero">
+						      <h4>{{hero.name}}</h4>
+						    </div>
+						  </div>
+						</div>
+						<my-hero-search></my-hero-search>
+					</code></pre>
+
+					<aside class="notes">
+						and here is the dashboard component's template. notice here that the search bar is split out into
+						it's own component, since this is a specialized peice of the ui, and could also easily be used in other
+						areas of the application. So how does your app know though, that this custom component is available?
+					</aside>
+				</section>
+
+				<section>
+					<pre><code class="typescript" data-trim >
+					@NgModule({
+					  imports: [
+					    BrowserModule,
+					    FormsModule,
+					    AppRoutingModule,
+					    HttpModule,
+					    InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 })
+					  ],
+					  declarations: [
+					    AppComponent,
+					    DashboardComponent,
+					    HeroSearchComponent,
+					    HeroesComponent,
+					    HeroDetailComponent,
+					  ],
+					  providers: [
+					    HeroService,
+					    { provide: APP_BASE_HREF, useValue: '/' },
+					    { provide: LocationStrategy, useClass: HashLocationStrategy }
+					  ],
+					  bootstrap: [AppComponent]
+					})
+					export class AppModule { }
+					</code></pre>
+
+					<aside class="notes">
+						that's clearly laid out int he main app.module file. The imports section defines what additional
+						modules you're using (so other entire bundles of elements, services etc), and then also what components
+						this module declares, as well as what services it can provide. (Those additioanl providers for location I added
+						to enable the hash location. It is however a nice example of how easy it is to configure the behavior of a module.
+						if you want to override how a particular service works, or provider an alternate implemetation of the service,
+						you can define it here for dependency injection (more on that later too))
+					</aside>
+				</section>
+
+				<section data-transition="none">
+					<h2>The Mindset</h2>
+					<ol>
+						<li>Angular is a framework</li>
+						<li>Apps are component driven (ala web-components-ish)</li>
+						<li class="fragment bold">Html templates are still valid html</li>
+						<p>
+
+						</p>
+					</ol>
+
+					<aside class="notes">
+						To me this was always a selling point for angular, as a developer, I would often get a working
+						mockup of static html page, and then it would be my job to actually do things. the html and css would
+						already be pretty much mostly valid, I just need to add the additional logic, loops, filters, etc. Angulars
+						approach really shines here for that.
+
+						Finally, opinionated. Angular is fairly opinionated. The framework comes with solutions to most problems
+						and it's easiest to just use them. Angular 2/4 has also taken what I think the wonderful step to produce
+						an official style guide
+					</aside>
+				</section>
+
+				<section data-transition="none" data-background-image="images/mrspock.webp">
+					<h2>The Mindset</h2>
+					<ol>
+						<li>Angular is a framework</li>
+						<li>Apps are component driven (ala web-components-ish)</li>
+						<li class="bold">Html templates are still valid html</li>
+						<li class="bold">Opinionated (mostly)</li>
+					</ol>
+
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+
+				<section data-transition="none" data-background-image="images/mrspock.webp">
+					<h2>The Ecosystem</h2>
+					<ol>
+						<li>Typescript</li>
+						<li>Webpack</li>
+						<li>CLI</li>
+						<li>RxJS</li>
+						<li>NgRx (optional)</li>
+						<li>Angular Material</li>
+						<li>Angular Universal</li>
+						<li>Nativescript / React Native</li>
+						<li>Augury</li>
+					</ol>
+
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+				<section>
+					<h2>This video will use up the remaining space on the slide</h2>
+				  <video class="stretch" data-src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" data-autoplay></video>
+				</section>
+
+				<section>
+					<p class="fragment grow">grow</p>
+					<p class="fragment shrink">shrink</p>
+					<p class="fragment fade-out">fade-out</p>
+					<p class="fragment fade-up">fade-up (also down, left and right!)</p>
+					<p class="fragment current-visible">visible only once</p>
+					<p class="fragment highlight-current-blue">blue only once</p>
+					<p class="fragment highlight-red">highlight-red</p>
+					<p class="fragment highlight-green">highlight-green</p>
+					<p class="fragment highlight-blue">highlight-blue</p>
+				</section>
+
+				<section data-transition-speed="fast">
+				  <img data-src="image.png">
+				  <iframe data-src="http://hakim.se"></iframe>
+				  <video>
+				    <source data-src="video.webm" type="video/webm" />
+				    <source data-src="video.mp4" type="video/mp4" />
+				  </video>
+				</section>
+
+				<section data-transition="zoom" data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-video-loop data-background-video-muted>
+					<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
+						<h2>Video Backgrounds</h2>
+						<pre><code class="hljs stylus" style="word-wrap: break-word;">&lt;<span class="hljs-selector-tag">section</span> data-<span class="hljs-attribute">background</span>-video=<span class="hljs-string">"video.mp4,video.webm"</span>&gt;</code></pre>
+					</div>
+				</section>
+
+				<section data-background="http://i.giphy.com/90F8aUepslB84.gif" data-background-image="http://i.giphy.com/90F8aUepslB84.gif">
+					<h2>... and GIFs!</h2>
+				</section>
+
 			</div>
 		</div>
 
@@ -37,6 +496,14 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				history:true,
+				minScale: 0.8,
+				/* might need this - https://github.com/hakimel/reveal.js#presentation-size*/
+				/*width: "100%",
+				height: "100%",
+				margin: 0,
+				minScale: 1,
+				maxScale: 1,*/
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
