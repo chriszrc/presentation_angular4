@@ -29,8 +29,35 @@
 		    margin: .5em 0;
 			}
 
+			.reveal pre {
+ 				margin: 0 auto !important;
+			}
+
 			.reveal pre code {
-				max-height:600px !important;
+				max-height: 700px !important;
+			}
+
+
+			.reveal .slides section .fragment.highlight-yellow,
+				.reveal .slides section .fragment.highlight-current-yellow {
+  			opacity: 1;
+  			visibility: inherit;
+			}
+
+			.reveal .slides section .fragment.highlight-yellow.visible {
+			  color: #eef703 !important;
+			}
+
+			.reveal .slides section .fragment.highlight-yellow.visible > span {
+			  color: #eef703 !important;
+			}
+
+			.reveal .slides section .fragment.highlight-current-yellow.current-fragment {
+			  color: #eef703 !important;
+			}
+
+			.reveal .slides section .fragment.highlight-current-yellow.current-fragment > span {
+				color: #eef703 !important;
 			}
 
 			.reveal .slides > section.cm-title, .reveal .slides > section > section.cm-title {
@@ -122,10 +149,8 @@
 					<h5 style="text-transform:lowercase;">bit.ly/anglr43</h5>
 					<img src="images/zross.png" style="height:100px" class="nostyle plain"/>
 					<aside class="notes">
-						Hi, I'm chris marx, if you're ansty and want to get the slides now, they're all available at that link,
-						as well as the speaker notes. and quick plug, For those that don't know i work at zev ross spatial analysis, we're a
-						local data science and geospatial consulting company, specializing in really any kind of project that's
-						data intensive, either statisitcally or geographically.
+						Hi, I'm chris marx, slides are up now at that link. and quick plug, For those that don't know i work at zev ross
+						 spatial analysis, we're a local data science and geospatial consulting company.
 					</aside>
 				</section>
 
@@ -136,6 +161,11 @@
 					<div style=" color: #000; padding: 20px;" class="bottom">
 						<h2 class="meme">And Beyond!</h2>
 					</div>
+
+					<aside class="notes">
+						I'm talking today about "To angular 4 / infinity and beyond!". All jokes aside, i will be covering
+						the latest version of angular today, which is 4.
+					</aside>
 				</section>
 
 
@@ -143,12 +173,12 @@
 					<h2>The Mindset</h2>
 					<ol>
 						<li>Angular is a framework</li>
-						<li>Apps are component driven (ala web-components-ish)</li>
+						<li>Apps are component driven (web-components-ish)</li>
 						<li>Html templates are still valid html</li>
 						<li>Opinionated (mostly)</li>
 					<ol>
 					<aside class="notes">
-						Start with the mindset. Here's a top level overview
+						Start with the mindset. Here's a top level overview, so mindset, ecosystem, who should use it and what's terrible
 					</aside>
 				</section>
 
@@ -166,12 +196,17 @@
 						</ol>
 					</div>
 					<aside class="notes">
-						Isomorphic rendering, or server side rendering is now supported and officially part of the angular universe with angular universal.
-						To support that feature, angular 2+ (just angular) has a pluggable rendering system, so now you can even do native apps using
+						number 1 angular is a framework. when you step into the matrix, err i mean start using the framework, the framework
+						 provides all.
+						You get what are essentially web components, ui library, router, flex layout, animations, cli, browser plugin,
+						http client for doing ajax, really if it's something that's pretty essential to making a single page app work,
+						chances are angular is going to at least have some basic support for it.. Obviously if you need a mapping framework like leaflet
+						or need charts, etc., you're going to include other libraries.
+						We now also have
+						Isomorphic rendering, or server side rendering supported and officially part of the angular universe with the
+						addition of angular universal.
+						To support that feature, angular now comes with a pluggable rendering system, so now you can even do native apps using
 						thing like react native, or the more recommended solution is to use nativescript, which is a similar effort.
-						If it's something that's pretty essential to making a single page app work, chances are angular is going to
-						at least have some basic support, and usually its enough. Obviously if you need a mapping framework like leaflet
-						or need charts, etc., you're going to include other libraries, but for the basics of the app itself, Angular provides all.
 						</article>
 					</aside>
 				</section>
@@ -188,8 +223,11 @@
 						</li>
 					</ol>
 					<aside class="notes">
+						number 2, so Angular is really all about the components now. Angularjs or angular 1 started off with the idea that components were a good thing
+						but didn't force you to be completely component driven. Now angular is entirely component driven.
 						For this section, I'm going to be referencing the Angular Tour of Heroes app, which is what all the official
-						documentation references.
+						documentation references. it's also what they use to look at advanced topics, and it's very handy to have around
+						as a reference, you can check it out from that github link.
 					</aside>
 				</section>
 
@@ -200,36 +238,41 @@
 					<aside class="notes">
 						Here's the  basic demo app, it's got the router (which also now supports nested routes, optional states, it's very nice),
 						it's got 2 different primary page views, and then within each view, there are additional components that are built individually
-						like the search bar, or the hero detail view, which is used across both views.
+						like the search bar, or the hero detail view, which is used across both views. In page routing (and i'm showing the url here since this
+						is being shown in an iframe), provide deep links to anywhere	in the application.
 					</aside>
 				</section>
 
 				<section>
-					<pre><code class="typescript" data-trim >
+					<pre><code class="stretch" data-trim>
+						&lt;body>
+						  <my-root></my-root>
+						&lt;/body>
+					</code></pre>
+
+					<aside class="notes">
+						To put that app on a page, we just include this
+					</aside>
+				</section>
+
+				<section>
+					<pre><code class="stretch typescript" data-trim  data-noescape>
 						import { Component } from '@angular/core';
 						import { Router, Event, NavigationEnd } from "@angular/router";
 
-						@Component({
-						  selector: 'my-root',
-						  template: `
-						    <h1>{{title}} ----- Show URL:{{urlLocation}}</h1>
-						    <div class="header-bar"></div>
-						    <nav>
-						      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-						      <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
-						    </nav>
-						    <router-outlet></router-outlet>
-						  `,
-						  styleUrls: ['./app.component.css']
+						<span class="fragment highlight-yellow">@Component({</span>
+						  <span class="fragment highlight-yellow">selector:</span> 'my-root',
+						  <span class="fragment highlight-yellow">templateUrl</span>: './app.component.html',
+						  <span class="fragment highlight-yellow">styleUrls:</span> ['./app.component.css']
 						})
 						export class AppComponent {
-						  title = 'Tour of Heroes';
-						  urlLocation = "";
+						  <span class="fragment highlight-yellow">title = 'Tour of Heroes';
+						  urlLocation = "";</span>
 
 						  constructor(private router: Router){
-						    router.events.subscribe((event:Event) => {
+						    <span class="fragment highlight-yellow">router.events.subscribe((event:Event) => {</span>
 						      if(event instanceof NavigationEnd) {
-						        this.urlLocation = event.url;
+						        <span class="fragment highlight-yellow">this.urlLocation = event.url;</span>
 						      }
 						    });
 						  }
@@ -237,16 +280,47 @@
 					</code></pre>
 
 					<aside class="notes">
-						This is the primary app component, it doesn't do a whole lot, but it shows how you can put html and even css if you want
-						in a single file, like a standard webcomponent. Best practices are to keep everything in different files, that'll be shown next
-						You can see we've got some additional attributes being added to the link elements, those are router specific directives to activate
-						the other route views, and the router-outlet, where the views will be rendered. you can have many nested router-outlets, which
-						lets you create whatever kind of ui you want. For this demo, I added the event.subscribe, which simply sets up a subscription
+						Ok, how does that work. This is the primary app component. There's is not much here, but if you're not familiar with es6 or typescript
+						it could look like we're not even doing javascript anymore.
+						1.The component annotation adds both information to angular about what this class is,
+						as well as a way to set commonly needed information in a nice succint way, rather than
+						having to extend a super class, call getters, etc.
+						  It's really just a container, but this is where it all begins.
+						The selector identifies what tag this app will be rendered into. This is basically web-components,
+						if you put a angle bracket my-root html tag on the page, it will include what u put in this app.
+
+						2. the html template
+						3. the css -  all of the styles will automatically be scoped just to apply to this component. this echoes both css modules
+							and web components. Currently angular can support several different levels of css view encapsulation, even use
+							native shadow dom if its available.
+
+						4.For this demo, I added the event.subscribe, which simply sets up a subscription
 						to the router events, and when there is a successful navigation it updates the urlLocation class property, which are exposed
 						to the template. We'll talk more later about how angular handles change detection and knows to update the views.
 
-						Also, notice the selector "my-root". This is the custom element part of it. If you put a standard html tag on your page
-						that says <my-root> and include the scripts, my-root will render your app.
+					</aside>
+				</section>
+
+				<section>
+					<pre><code  class="typescript" data-trim>
+						<h1>{{title}} ----- Show URL:{{urlLocation}}</h1>
+						<div class="header-bar"></div>
+						<nav>
+							<a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+							<a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+						</nav>
+						<router-outlet></router-outlet>
+					</code></pre>
+
+				  <aside class="notes">
+						This is what the html template looks like for this basic component. The curly brackets are replaced
+						with what the values those variables in the compoennt contain.
+						You can see we have another custom tag already here, that the router outlet, this is where the different
+						views of the app will be rendered.
+						You can see we've got some additional attributes being added to the link elements, those are router specific directives to activate
+						the other route views, and the router-outlet, where the views will be rendered. you can have many nested router-outlets, which
+						lets you create whatever kind of ui you want. The router in some ways, is also where angular apps tend to prefer
+						storing state.
 					</aside>
 				</section>
 
@@ -293,12 +367,12 @@
 						import { HeroService } from './hero.service';
 
 						@Component({
-						  <span class="fragment highlight-green">selector: 'my-dashboard'</span>,
-						  <span class="fragment highlight-green">templateUrl: './dashboard.component.html'</span>,
-						  <span class="fragment highlight-green">styleUrls: ['./dashboard.component.css']</span>
+						  selector: 'my-dashboard',
+						  templateUrl: './dashboard.component.html',
+						  styleUrls: ['./dashboard.component.css']
 						})
 						export class DashboardComponent implements OnInit {
-						  <span class="fragment highlight-green">heroes: Hero[] = [];</span>
+						  <span class="fragment highlight-yellow">heroes: Hero[] = [];</span>
 
 						  constructor(
 						    private router: Router,
@@ -317,7 +391,7 @@
 						}
 
 						/*just for demo, can also use interfaces here too*/
-						<span class="fragment highlight-green">export class Hero {</span>
+						<span class="fragment highlight-yellow">export class Hero {</span>
 						  id: number;
 						  name: string;
 						}
@@ -327,12 +401,6 @@
 						typically each major page view is a component as well. Here the component is setup more typically, with all
 						the resources in their own files. This is the dashboard, the default view.
 
-						There are a number of things to notice here.
-						1. selector - this is the name of the custom html tag that will render this component (exactly like a web component)
-						2. the html is in its own file now
-						3. all of the styles will automatically be scoped just to apply to this component. this echoes both css modules
-							and web components. Currently angular can support several different levels of css view encapsulation, even use
-							native shadow dom if its available.
 						4. Notice the array has type "Hero", this is very nice since all the methods are deal with hero records can now expect
 						   exactly what they are getting, and typescript will give type errors immediately, as well as intellisense,
 							 more on that later.
@@ -357,6 +425,32 @@
 						and here is the dashboard component's template. notice here that the search bar is split out into
 						it's own component, since this is a specialized peice of the ui, and could also easily be used in other
 						areas of the application. So how does your app know though, that this custom component is available?
+					</aside>
+				</section>
+
+				<section>
+					<pre><code data-trim >
+						@Injectable()
+						export class HeroService {
+						  private heroesUrl = 'app/heroes';  // URL to web api
+
+						  constructor(private http: Http) { }
+
+						  getHeroes(): Promise&lt;Array&lt;Hero>> {
+						    return this.http
+						      .get(this.heroesUrl)
+						      .toPromise()
+						      .then((response) => {
+						        return response.json().data as Hero[];
+						      })
+						      .catch(this.handleError);
+						  }
+
+						...
+					</code></pre>
+
+					<aside class="notes">
+
 					</aside>
 				</section>
 
@@ -413,7 +507,6 @@
 						<li>Apps are component driven (ala web-components-ish)</li>
 						<li class="fragment bold">Html templates are still valid html</li>
 						<p>
-
 						</p>
 					</ol>
 
@@ -455,7 +548,7 @@
 						<li class="bold">Html templates are still valid html</li>
 						<li class="bold">Opinionated (mostly)
 							<ul class="nobold">
-								<li class="fragment">Change Detection</li>
+								<li class="fragment grow highlight-green">Change Detection</li>
 							</ul>
 						</li>
 					</ol>
@@ -476,6 +569,8 @@
 						object equality. Or you can go with rxjs, and use observables for data that will change. In the later
 						2 cases, you can also tell angular to only search the component trees that are strictly affected by your
 						changes.
+						You're also free of course to use ngrx, which is a unidirectional data store just like react, and you
+						get the history and everything (i havent used it).
 					</aside>
 				</section>
 
@@ -500,7 +595,7 @@
 					</ol>
 
 					<aside class="notes">
-						Oh yes flying now
+						alright, yeah, that is a lot, we're flying now
 					</aside>
 				</section>
 
@@ -511,12 +606,18 @@
 					</div>
 
 					<aside class="notes">
+						  I think typescript has basically won. Typescript gives you es6 transpilation like babel, but
+							it also gives you types, and features from javascript next (es7 ,etc)
 							but wait, you didn't even add any types! i like this example best from typescript, because people
 							are always afraid, like, oh, i'm going to spend all day writing string and number etc. nope. duck typing ftw!
 					</aside>
 				</section>
 
 				<section data-background-transition="zoom" data-background-image="images/ducktyping.jpg" data-background-size="100% 100%">
+					<aside class="notes">
+							typescript also gives you tooling like you would expect in a static language with an ide (even though i just use atom)
+							you can automatically resolve the es6 imports for instance, and not waste time manually including all those import statements
+					</aside>
 				</section>
 
 				<section>
@@ -528,9 +629,61 @@
 					</div>
 
 					<aside class="notes">
-							but wait, you didn't even add any types! i like this example best from typescript, because people
-							are always afraid, like, oh, i'm going to spend all day writing string and number etc. nope. duck typing ftw!
+							ok, so here's the cli, it's sped up a bit, but this is no more than a minute or 2 in reality. here we go, you
+							make a new app. angular creates everything u need, all the typescript configuration, the webpack, all the default
+							packages u need for both dev and production. and then u can serve it with an angular node server, already
+							configured with live reload while you're working, including ahead-of-time compiling or aot, that means
+							you do get error checking in your templates just like react, even though we dont have to use the specialized
+							jsx syntax. when u add components or services or whatever, angular automatically adds them to ur module
+							definition too. and when you're ready to ship your app, u just hit another command, and u get a complete
+							bundle thats minified, uglified, tree shaken, all extra dependecnies or unused code removed, revved and ready
+							to go, even with environment specific variables, etc.
 					</aside>
+				</section>
+
+				<section>
+					<h2>RXJS</h2>
+					<pre><code data-trim data-noescape>
+					  search(term: string): void {
+					    // Push a search term into the observable stream.
+					    this.searchTerms.next(term);
+					  }
+
+					  ngOnInit(): void {
+					    this.heroes = this.searchTerms
+					      <span class="fragment highlight-yellow">.debounceTime(300)</span>        // wait for 300ms pause in events
+					      .distinctUntilChanged()   // ignore if next search term is same as previous
+					      .switchMap(term => term   // return the http search observable or the observable of empty heroes if no search term
+					        ? this.heroSearchService.search(term)
+					        : Observable.of<Hero[]>([]))
+					      .catch(error => {...});
+					  }
+
+					/* or */
+					  search(term: string): Observable<Hero[]> {
+					    return this.http
+					      .get<Heror>(`app/heroes/?name=${term}`)
+					      <span class="fragment highlight-yellow">.retry(3)</span>
+					      .catch((error: any) => {
+					          console.error('An friendly error occurred', error);
+					          return Observable.throw(error.message || error);
+					      });
+					  }
+					</code></pre>
+
+					<aside class="notes">
+						Reactive Extensions for JS
+						handling asnychronous streams of data
+					</aside>
+				</section>
+
+				<section>
+					<h2>Augury</h2>
+					<div class="stretch">
+						<video controls loop data-autoplay>
+						 <source data-src="images/augury.mov" />
+						</video>
+					</div>
 				</section>
 
 				<section data-transition="none" >
@@ -553,17 +706,16 @@
 					<ol class="stretch" style="background-color: rgba(0, 0, 0, 0.5);">
 						<li>You like Typescript</li>
 						<li>Bigger projects (mostly)</li>
-						<li>You don't like having to make many decisions</li>
+						<li>You don't like having to make a lot decisions</li>
 						<li class="li--blank">&nbsp;</li>
 					</ol>
 
 					<aside class="notes">
-							1. bigger projects - although once you get to know it, there really isnt any reason to use it for smaller apps either
-							2. typescript
+							1.
 					</aside>
 				</section>
 
-				<section data-transition="none" data-background-image="images/troll-face.jpg" data-background-size="40% 40%" data-background-position="52% 100%"  >
+				<section data-transition="none" data-background-image="images/troll-face.jpg" data-background-size="35% 35%" data-background-position="52% 100%"  >
 					<h2>When to use this framework</h2>
 					<ol class="stretch" >
 						<li>You like Typescript</li>
@@ -579,7 +731,7 @@
 				</section>
 
 				<section data-transition="none" data-background-image="">
-					<h2>When to use this framework cont.</h2>
+					<h2>When cont.</h2>
 					<ol start="5">
 						<li class="fragment" data-fragment-index="1">You want a framework that is not going away (supported by google)</li>
 						<li class="fragment" data-fragment-index="3">You want a job</li>
@@ -587,11 +739,11 @@
 					<video class="fragment" data-fragment-index="2" data-autoplay loop>
 					 <source data-src="images/made_with_angular.mov" />
 				  </video>
-					<img src="images/jobs.png" style="height: 36%;position: absolute;top: 346px;width: 116%;left: 0px;" class="fragment" data-fragment-index="3"/>
+					<img src="images/jobs.png" style="height: 36%;position: absolute;top: 267px;width: 116%;left: 0px;" class="fragment" data-fragment-index="3"/>
 					<sub class="fragment" data-fragment-index="3">https://www.indeed.com/jobtrends/q-react.js-q-angular.js-q-ember.js-q-backbone.js-q-vuejs.html</sub>
 
 					<aside class="notes">
-							5. you want a frameowkr that is not going away, will remain supported and actively developed (google), with new technology choices
+							5. you want a framework that is not going away, will remain supported and actively developed (google), with new technology choices
 							by google engineers. And you want to use a framework used by paypal, hbo, sony, tesla, etc, and of course google
 							6. You want a job
 					</aside>
@@ -606,7 +758,7 @@
 						<li>Everything is still a little bleeding edge</li>
 						<li>There is magic going on</li>
 						<!-- no so terrible anymore -->
-						<li>But but the imports and the crazy dependency injection</li>
+						<li>But but the imports and the crazy dependency injection!</li>
 						<li>The size!</li>
 						<li>The speed!</li>
 					</ol>
@@ -640,10 +792,6 @@
 					<aside class="notes">
 						Thank you
 					</aside>
-				</section>
-
-				<section data-background="http://i.giphy.com/90F8aUepslB84.gif" data-background-image="http://i.giphy.com/90F8aUepslB84.gif">
-					<h2>... Bonus Slide!</h2>
 				</section>
 
 			</div>
