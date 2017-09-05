@@ -97,6 +97,10 @@
 				text-decoration: underline;
 				color:#3884b9;
 			}
+
+			.li--blank {
+				list-style: none;
+			}
 		</style>
 	</head>
 	<body>
@@ -115,10 +119,13 @@
 				<section>
 					<img src="images/chris-profile.jpg" class="avatar" />
 					<h5 style="text-transform:lowercase;">@chrismarx</h5>
-					<h5 style="text-transform:lowercase;">bit.ly/98hfkj2</h5>
+					<h5 style="text-transform:lowercase;">bit.ly/anglr43</h5>
 					<img src="images/zross.png" style="height:100px" class="nostyle plain"/>
 					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+						Hi, I'm chris marx, if you're ansty and want to get the slides now, they're all available at that link,
+						as well as the speaker notes. and quick plug, For those that don't know i work at zev ross spatial analysis, we're a
+						local data science and geospatial consulting company, specializing in really any kind of project that's
+						data intensive, either statisitcally or geographically.
 					</aside>
 				</section>
 
@@ -318,8 +325,7 @@
 
 					<aside class="notes">
 						typically each major page view is a component as well. Here the component is setup more typically, with all
-						the resources in their own files. This is the dashboard, the default view. We make a ajax call for heroes
-						and put them in the heroes array when we get em back.
+						the resources in their own files. This is the dashboard, the default view.
 
 						There are a number of things to notice here.
 						1. selector - this is the name of the custom html tag that will render this component (exactly like a web component)
@@ -354,8 +360,16 @@
 					</aside>
 				</section>
 
+				<section data-background-image="images/homer_frightened2.gif" data-background-transition="concave" data-background-size="100% 100%">
+
+					<aside class="notes">
+						The next slide is usually where people start getting scared. I realize there are unfamiliar terms here
+						but it's really pretty darn sensical
+					</aside>
+				</section>
+
 				<section>
-					<pre><code class="typescript" data-trim >
+					<pre><code class="typescript" data-trim data-background-transition="concave" data-transition="concave">
 					@NgModule({
 					  imports: [
 					    BrowserModule,
@@ -387,7 +401,8 @@
 						this module declares, as well as what services it can provide. (Those additioanl providers for location I added
 						to enable the hash location. It is however a nice example of how easy it is to configure the behavior of a module.
 						if you want to override how a particular service works, or provider an alternate implemetation of the service,
-						you can define it here for dependency injection (more on that later too))
+						you can define it here for dependency injection (more on that later too)). For large projects, being able to
+						keep track so concisely of everything that is involved or required by ur module is a life saver.
 					</aside>
 				</section>
 
@@ -407,14 +422,10 @@
 						mockup of static html page, and then it would be my job to actually do things. the html and css would
 						already be pretty much mostly valid, I just need to add the additional logic, loops, filters, etc. Angulars
 						approach really shines here for that.
-
-						Finally, opinionated. Angular is fairly opinionated. The framework comes with solutions to most problems
-						and it's easiest to just use them. Angular 2/4 has also taken what I think the wonderful step to produce
-						an official style guide
 					</aside>
 				</section>
 
-				<section data-transition="none" data-background-image="images/mrspock.webp">
+				<section data-transition="none" data-background-image="images/mrspock.webp" data-background-size="97% 100%">
 					<h2>The Mindset</h2>
 					<ol>
 						<li>Angular is a framework</li>
@@ -424,18 +435,63 @@
 					</ol>
 
 					<aside class="notes">
+						Finally, opinionated. Angular is fairly opinionated. You could use it without typescript, but it will be more painful,
+						as most of the examples are in typescript. rxjs is baked in, and angular basically thinks you should use (and we will see why).
+						The framework comes with solutions to most problems
+						and it's easiest to just use them. Angular 2/4 has also taken what I think the wonderful step to produce
+						an official style guide,  for people like me, this is a godsend. I want to send off a developer,
+						and say, make this component, and i want it to look exactly as if i did it myself,
+						and i would do it following the styleguide and so can they. Its awesome.
 
+						There are some things that angular does leave up to you. For instance, some of the change detection options
 					</aside>
 				</section>
 
+				<section data-transition="none" data-background-image="images/sinead2.gif" data-background-size="128% 100%">
+					<h2>The Mindset</h2>
+					<ol>
+						<li>Angular is a framework</li>
+						<li>Apps are component driven (ala web-components-ish)</li>
+						<li class="bold">Html templates are still valid html</li>
+						<li class="bold">Opinionated (mostly)
+							<ul class="nobold">
+								<li class="fragment">Change Detection</li>
+							</ul>
+						</li>
+					</ol>
 
-				<section data-transition="none" data-background-image="images/mrspock.webp">
+					<aside class="notes">
+						Change detection - is all about how these frameworks compare some current state with some new state
+						and figure out if something has changed, and whether there needs to be some re-rendering of the dom.
+
+						Maybe add slide with figures here. Afai understand it, React treats all data as immutables, and
+						so if you want the data to update, you pass it a new object, and it can tell the different with
+						straight object equality, it then renders the dom virtually, diffs, and then renders the changed areas.
+						Vue is a bit more like angular, where you specify which properties count as important data in your data config
+						and those are the only values that are watched for changes, and then diffed with virtual dom.
+						Angular actually gives you choices here. You can stick to the easiest method, which we saw earlier, and just
+						have angular build a change detection class for each of your componenets, and it will figure out
+						what data can change, and watch everything, and update the values in the dom accordingly. Or, you
+						can tell angular that you are going to use immutable.js, and it will only look at changes based on
+						object equality. Or you can go with rxjs, and use observables for data that will change. In the later
+						2 cases, you can also tell angular to only search the component trees that are strictly affected by your
+						changes.
+					</aside>
+				</section>
+
+				<section data-background-image="images/matrix_flying.gif" data-background-size="80% 50%">
+					<aside class="notes">
+						I realize that was alot, so i'm going to fly through the rest of this
+					</aside>
+				</section>
+
+				<section >
 					<h2>The Ecosystem</h2>
 					<ol>
 						<li>Typescript</li>
-						<li>Webpack</li>
-						<li>CLI</li>
+						<li>CLI, Webpack</li>
 						<li>RxJS</li>
+						<li>Dependency Injection</li>
 						<li>NgRx (optional)</li>
 						<li>Angular Material</li>
 						<li>Angular Universal</li>
@@ -444,45 +500,150 @@
 					</ol>
 
 					<aside class="notes">
-
+						Oh yes flying now
 					</aside>
 				</section>
 
 				<section>
-					<h2>This video will use up the remaining space on the slide</h2>
-				  <video class="stretch" data-src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" data-autoplay></video>
+					<h2>1. Typescript</h2>
+					<div class="stretch">
+							<img src="images/typescript_coding.gif" style="height:60%; width:100%;"/>
+					</div>
+
+					<aside class="notes">
+							but wait, you didn't even add any types! i like this example best from typescript, because people
+							are always afraid, like, oh, i'm going to spend all day writing string and number etc. nope. duck typing ftw!
+					</aside>
+				</section>
+
+				<section data-background-transition="zoom" data-background-image="images/ducktyping.jpg" data-background-size="100% 100%">
 				</section>
 
 				<section>
-					<p class="fragment grow">grow</p>
-					<p class="fragment shrink">shrink</p>
-					<p class="fragment fade-out">fade-out</p>
-					<p class="fragment fade-up">fade-up (also down, left and right!)</p>
-					<p class="fragment current-visible">visible only once</p>
-					<p class="fragment highlight-current-blue">blue only once</p>
-					<p class="fragment highlight-red">highlight-red</p>
-					<p class="fragment highlight-green">highlight-green</p>
-					<p class="fragment highlight-blue">highlight-blue</p>
+					<h2>2. CLI</h2>
+					<div class="stretch">
+						<video controls loop>
+						 <source data-src="images/cli_final.mov" />
+						</video>
+					</div>
+
+					<aside class="notes">
+							but wait, you didn't even add any types! i like this example best from typescript, because people
+							are always afraid, like, oh, i'm going to spend all day writing string and number etc. nope. duck typing ftw!
+					</aside>
 				</section>
 
-				<section data-transition-speed="fast">
-				  <img data-src="image.png">
-				  <iframe data-src="http://hakim.se"></iframe>
-				  <video>
-				    <source data-src="video.webm" type="video/webm" />
-				    <source data-src="video.mp4" type="video/mp4" />
+				<section data-transition="none" >
+					<h2>When to use this framework</h2>
+					<ol class="stretch">
+						<li>You like Typescript</li>
+						<li class="fragment">Bigger projects (mostly)</li>
+						<li class="li--blank">&nbsp;</li>
+						<li class="li--blank">&nbsp;</li>
+					</ol>
+
+					<aside class="notes">
+							1. bigger projects - although once you get to know it, there really isnt any reason to use it for smaller apps either
+							2. typescript
+					</aside>
+				</section>
+
+				<section data-transition="none" data-background-image="images/futurama.jpg" data-background-size="100% 100%" >
+					<h2>When to use this framework</h2>
+					<ol class="stretch" style="background-color: rgba(0, 0, 0, 0.5);">
+						<li>You like Typescript</li>
+						<li>Bigger projects (mostly)</li>
+						<li>You don't like having to make many decisions</li>
+						<li class="li--blank">&nbsp;</li>
+					</ol>
+
+					<aside class="notes">
+							1. bigger projects - although once you get to know it, there really isnt any reason to use it for smaller apps either
+							2. typescript
+					</aside>
+				</section>
+
+				<section data-transition="none" data-background-image="images/troll-face.jpg" data-background-size="40% 40%" data-background-position="52% 100%"  >
+					<h2>When to use this framework</h2>
+					<ol class="stretch" >
+						<li>You like Typescript</li>
+						<li>Bigger projects (mostly)</li>
+						<li>You don't like having to make many decisions</li>
+						<li>You like being faster than React :P</li>
+					</ol>
+
+					<aside class="notes">
+							1. bigger projects - although once you get to know it, there really isnt any reason to use it for smaller apps either
+							2. typescript
+					</aside>
+				</section>
+
+				<section data-transition="none" data-background-image="">
+					<h2>When to use this framework cont.</h2>
+					<ol start="5">
+						<li class="fragment" data-fragment-index="1">You want a framework that is not going away (supported by google)</li>
+						<li class="fragment" data-fragment-index="3">You want a job</li>
+					</ol>
+					<video class="fragment" data-fragment-index="2" data-autoplay loop>
+					 <source data-src="images/made_with_angular.mov" />
 				  </video>
+					<img src="images/jobs.png" style="height: 36%;position: absolute;top: 346px;width: 116%;left: 0px;" class="fragment" data-fragment-index="3"/>
+					<sub class="fragment" data-fragment-index="3">https://www.indeed.com/jobtrends/q-react.js-q-angular.js-q-ember.js-q-backbone.js-q-vuejs.html</sub>
+
+					<aside class="notes">
+							5. you want a frameowkr that is not going away, will remain supported and actively developed (google), with new technology choices
+							by google engineers. And you want to use a framework used by paypal, hbo, sony, tesla, etc, and of course google
+							6. You want a job
+					</aside>
 				</section>
 
-				<section data-transition="zoom" data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-video-loop data-background-video-muted>
-					<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-						<h2>Video Backgrounds</h2>
-						<pre><code class="hljs stylus" style="word-wrap: break-word;">&lt;<span class="hljs-selector-tag">section</span> data-<span class="hljs-attribute">background</span>-video=<span class="hljs-string">"video.mp4,video.webm"</span>&gt;</code></pre>
+
+				<section data-transition="none" >
+					<h2>What is terrible</h2>
+					<ol>
+						<li>Really good at all its setup to do, not so good for other things...</li>
+						<li>People say there is a learning curve</li>
+						<li>Everything is still a little bleeding edge</li>
+						<li>There is magic going on</li>
+						<!-- no so terrible anymore -->
+						<li>But but the imports and the crazy dependency injection</li>
+						<li>The size!</li>
+						<li>The speed!</li>
+					</ol>
+
+					<aside class="notes">
+						As long as you don't try to do something crazy, like create your own angular library, so you can resuse
+						a set of components and service across apps.
+					</aside>
+				</section>
+
+				<section data-transition-speed="fast" data-background-image="images/delorian.gif">
+					<h2>Bonus! Lightning Round!</h2>
+					<div style="background-color: rgba(0, 0, 0, 0.4); color: #fff; padding: 20px;">
+					  <p><a target="_blank" href="http://www.stefankrause.net/js-frameworks-benchmark6/webdriver-ts-results/table.html">
+							http://www.stefankrause.net/js-frameworks-benchmark6/webdriver-ts-results/table.html</a></p>
+						<p><a target="_blank" href="http://www.stefankrause.net/js-frameworks-benchmark6/vue-v2.3.3-non-keyed/">
+							http://www.stefankrause.net/js-frameworks-benchmark6/vue-v2.3.3-non-keyed/</a></p>
+						<p><a target="_blank" href="http://www.stefankrause.net/js-frameworks-benchmark6/angular-v4.1.2-non-keyed/">
+							http://www.stefankrause.net/js-frameworks-benchmark6/angular-v4.1.2-non-keyed/</a></p>
+						<p><a target="_blank" href="http://www.stefankrause.net/js-frameworks-benchmark6/react-v15.5.4-redux-v3.6.0/">
+						  http://www.stefankrause.net/js-frameworks-benchmark6/react-v15.5.4-redux-v3.6.0/</a></p>
 					</div>
 				</section>
 
+				<section>
+					<h2> Questions </h2>
+					<img src="images/chris-profile.jpg" class="avatar" />
+					<h5 style="text-transform:lowercase;">@chrismarx</h5>
+					<h5 style="text-transform:lowercase;">bit.ly/anglr43</h5>
+					<img src="images/zross.png" style="height:100px" class="nostyle plain"/>
+					<aside class="notes">
+						Thank you
+					</aside>
+				</section>
+
 				<section data-background="http://i.giphy.com/90F8aUepslB84.gif" data-background-image="http://i.giphy.com/90F8aUepslB84.gif">
-					<h2>... and GIFs!</h2>
+					<h2>... Bonus Slide!</h2>
 				</section>
 
 			</div>
@@ -497,7 +658,7 @@
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
 				history:true,
-				minScale: 0.8,
+				minScale: .8,
 				/* might need this - https://github.com/hakimel/reveal.js#presentation-size*/
 				/*width: "100%",
 				height: "100%",
