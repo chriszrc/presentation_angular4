@@ -450,7 +450,7 @@
 					</code></pre>
 
 					<aside class="notes">
-
+							a service, this is where reusable logic, business logic, non view related processing goes.
 					</aside>
 				</section>
 
@@ -677,6 +677,10 @@
 					</aside>
 				</section>
 
+				<section data-background-image="images/material.png" data-background-size="100% 83%">
+
+				</section>
+
 				<section>
 					<h2>Augury</h2>
 					<div class="stretch">
@@ -758,7 +762,7 @@
 						<li>Everything is still a little bleeding edge</li>
 						<li>There is magic going on</li>
 						<!-- no so terrible anymore -->
-						<li>But but the imports and the crazy dependency injection!</li>
+						<li>But but the imports and the crazy dependency injection! (Hero)</li>
 						<li>The size!</li>
 						<li>The speed!</li>
 					</ol>
@@ -766,6 +770,18 @@
 					<aside class="notes">
 						As long as you don't try to do something crazy, like create your own angular library, so you can resuse
 						a set of components and service across apps.
+
+						bleeding edge - material library hasn't fully implemented everythign from the angular 1 version
+						but there are also other ui libs out there too
+
+						imports! dependency injection! with typescript, as soon as u write something like Hero
+						any ide (even things like atom, which is what i use), can now automatically resolve the class
+						and add the import statements for you. and we saw how the cli can update your depenncy injection
+						too, so i think the cries of, BUT BOILERPLATE! are over rated at this pooint, and honestly,
+						for a big application, i want to be tracking the kinds of things u are able to track there.
+
+						we saw the basic size, but even tour of heroes, with rxjs, etc. was 94kb for all the main js and libraries.
+						speed - if we have time.
 					</aside>
 				</section>
 
@@ -781,6 +797,12 @@
 						<p><a target="_blank" href="http://www.stefankrause.net/js-frameworks-benchmark6/react-v15.5.4-redux-v3.6.0/">
 						  http://www.stefankrause.net/js-frameworks-benchmark6/react-v15.5.4-redux-v3.6.0/</a></p>
 					</div>
+
+					<aside class="notes">
+						In many ways, all these frameworks are all doing similar things for you. The question as i see it are
+						who do you want to invest in, which technologies do you like to use, what approaches do you like better
+						to some of the thigns like html templating or change detection.
+					</aside>
 				</section>
 
 				<section>
